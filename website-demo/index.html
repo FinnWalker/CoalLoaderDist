@@ -6,11 +6,23 @@
     <meta name="mobile-web-app-capable" content="yes">
     <meta id="theme-color" name="theme-color" content="#ffffff">
     <base target="_blank">
-    <title>Hat test</title>
+    <title>Hat Test</title>
 
     <style>
+      @keyframes fadeIn {
+        25% {
+          opacity: 0;
+        }
+        100% {
+          opacity: 1;
+        }
+      }
+      .fade-in {
+        animation: fadeIn 1s forwards;
+      }
       body {
         text-align: center;
+        margin: 0;
       }
       #video-source {
         display: none;
@@ -31,6 +43,7 @@
         left: 0;
         top: 0;
         margin: auto;
+        opacity: 0;
       }
 
       #xzimg-sdk-logo {
