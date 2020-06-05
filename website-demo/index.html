@@ -9,22 +9,30 @@
     <title>XZIMG Magic Face</title>
 
     <style>
+      body {
+        text-align: center;
+      }
+      #video-source {
+        display: none;
+      }
       #xzimg-sdk-wrapper {
-        position: relative;
-        margin-left: 10px;
-        margin-top: 50px;
+        margin: auto;
       }
 
       #xzimg-sdk-video {
         position: absolute;
         left: 0;
         top: 0;
+        display: none;
       }
 
       #xzimg-sdk-canvas {
         position: relative;
         left: 0;
         top: 0;
+        width: 100vmin !important;
+        height: 75vmin !important;
+        margin: auto;
       }
 
       #xzimg-sdk-logo {
@@ -37,14 +45,13 @@
         width: 400px; 
         height: 15px;
         -webkit-appearance: none;
+        display: none;
       }
     </style>
 </head>
 
 <body>
-    <h1><span>XZIMG Magic Face SDK Sample</span></h1>
-
-    <label for="video-source">Select Video source: </label>
+    <!-- <label for="video-source">Select Video source: </label> -->
     <select id="video-source">
       <option value="">select your device ID</option>
     </select>
@@ -52,12 +59,11 @@
     <div id="xzimg-sdk-wrapper">
       <video id="xzimg-sdk-video" playsinline autoplay></video>
       <canvas id="xzimg-sdk-canvas"></canvas>
-      <!-- <img id="xzimg-sdk-logo" src="assets/xzimg-logo.png" alt="XZIMG logo"> -->
     </div>
-    <label for="progress-bar">Init. progress: </label>
+    <!-- <label for="progress-bar">Init. progress: </label> -->
     <progress id="progress-bar" max="100" value="0"></progress>
 
     <script type="text/javascript" src="xzimg/xzimg.js"></script>
-    <script type="text/javascript" src="sample.js"></script>
+    <script type="text/javascript" src="bundle.js"></script>
 </body>
 </html>
