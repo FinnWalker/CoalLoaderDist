@@ -4,6 +4,12 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="index.css" />
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+      integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
+      crossorigin="anonymous"
+    />
     <title>Hat</title>
     <style></style>
   </head>
@@ -18,7 +24,10 @@
     ></script>
 
     <div id="demo-container">
+      <div id="spinner" class="spinner-border text-dark"></div>
+      <button id="ar-button">TRY ON IN AR</button>
       <model-viewer
+        id="model-viewer"
         src="./models/Hat.glb"
         alt="A 3D hat"
         auto-rotate
@@ -50,31 +59,39 @@
 
     <script type="text/javascript" src="xzimg/xzimg.js"></script>
     <script>
-      const video = document.getElementById("xzimg-sdk-video");
-      const videoCanvas = document.getElementById("xzimg-sdk-canvas");
-      let aspect_ratio = 1;
-      function resize() {
-        aspect_ratio = video.videoWidth / video.videoHeight;
-        console.log(aspect_ratio);
+      const ar_canvas = document.getElementById("xzimg-sdk-canvas");
+      const ar_button = document.getElementById("ar-button");
+      const model_viewer = document.getElementById("model-viewer");
 
-        if (aspect_ratio > 1) {
-          videoCanvas.style.height = "100% !important";
-          videoCanvas.style.width = "auto !important";
-        } else {
-          videoCanvas.style.height = "auto !important";
-          videoCanvas.style.width = "100% !important";
-        }
-      }
+      ar_button.addEventListener("click", startAR);
+
       function startAR() {
-        const script = document.createElement("script");
+        document.getElementById("spinner").style.display = "block";
+        ar_button.removeEventListener("click", startAR);
+        ar_button.addEventListener("click", hideAR);
+        ar_button.innerHTML = "BACK TO 3D VIEWER";
 
+        const script = document.createElement("script");
         script.setAttribute("src", "bundle.js");
         document.head.appendChild(script);
-
-        window.addEventListener("resize", resize);
-        window.addEventListener("orientationchange", resize);
       }
-      startAR();
+      function hideAR() {
+        ar_button.removeEventListener("click", hideAR);
+        ar_button.addEventListener("click", showAR);
+        ar_button.innerHTML = "BACK TO AR";
+
+        ar_canvas.style.opacity = 0;
+        model_viewer.style.opacity = 1;
+      }
+      function showAR() {
+        ar_button.removeEventListener("click", showAR);
+        ar_button.addEventListener("click", hideAR);
+        ar_button.innerHTML = "BACK TO 3D VIEWER";
+
+        ar_canvas.style.opacity = 1;
+        model_viewer.opacity = 0;
+      }
+      //startAR();
     </script>
   </body>
 </html>

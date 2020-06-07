@@ -122,6 +122,9 @@ function onVideoSelectionChanged(event) {
 function onVideoCanPlay() {
   videoReady = true;
   (0, _render.updateSize)(video, videoCanvas);
+  document.getElementById("model-viewer").style.opacity = 0;
+  document.getElementById("xzimg-sdk-canvas").style.opacity = 1;
+  document.getElementById("spinner").style.display = "none";
 }
 
 function isVideoReady() {
