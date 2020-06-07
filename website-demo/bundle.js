@@ -120,7 +120,6 @@ function onVideoSelectionChanged(event) {
 }
 
 function onVideoCanPlay() {
-  sdkCanvas.classList.add("fade-in");
   videoReady = true;
   (0, _render.updateSize)(video, videoCanvas);
 }
@@ -145,7 +144,7 @@ function getVideo() {
 // contact@xzimg.com, www.xzimg.com
 // DO NOT SHARE - DO NOT REPRODUCE
 // DO NOT USE IN ANYCOMMERCIAL PROJECTS WITHOUT EXPLICIT AUTHORIZATION FROM XZIMG LIMITED
-'use strict';
+"use strict";
 
 function _typeof(obj) {
   "@babel/helpers - typeof";
@@ -261,15 +260,12 @@ function initThreejs(fovy, video, videoCanvas) {
   var defaultWidth = 640;
   var defaultHeight = 480;
   renderer = new THREE.WebGLRenderer({
-    canvas: document.getElementById('xzimg-sdk-canvas'),
+    canvas: document.getElementById("xzimg-sdk-canvas"),
     alpha: true
   });
   renderer.setSize(defaultWidth, defaultHeight);
   renderer.setClearColor(0x000000, 1);
-  renderer.autoClear = false; //new
-
-  renderer.gammaOutput = true;
-  renderer.gammaFactor = 1.5; // Create scene
+  renderer.autoClear = false; // Create scene
 
   scene2D = new THREE.Scene();
   scene3D = new THREE.Scene(); // Setup cameras
@@ -287,9 +283,9 @@ function initThreejs(fovy, video, videoCanvas) {
   // scene3D.add(directionalLight);
   //new
 
-  loader.load('./Hat.glb', function (gltf) {
+  loader.load("./Hat.glb", function (gltf) {
     var model = gltf.scene;
-    model.name = 'hat';
+    model.name = "hat";
     model.traverse(function (o) {
       if (o.isMesh) {
         //o.material = material2;
@@ -301,7 +297,7 @@ function initThreejs(fovy, video, videoCanvas) {
   }, undefined, function (error) {
     console.error(error);
   });
-  loader.load('./Occluder.glb', function (gltf) {
+  loader.load("./Occluder.glb", function (gltf) {
     var model = gltf.scene;
     model.traverse(function (o) {
       if (o.isMesh) {
@@ -309,7 +305,7 @@ function initThreejs(fovy, video, videoCanvas) {
         o.renderorder = -1;
       }
     });
-    model.name = 'occluder';
+    model.name = "occluder";
     scene3D.add(model);
     objects.push(model);
   }, undefined, function (error) {
@@ -317,7 +313,7 @@ function initThreejs(fovy, video, videoCanvas) {
   }); //new
   // Create texture to apply on face
 
-  var texture = new THREE.TextureLoader().load('assets/frenchflag.png');
+  var texture = new THREE.TextureLoader().load("assets/frenchflag.png");
   faceMaterial = new THREE.MeshLambertMaterial({
     map: texture,
     transparent: true
@@ -342,8 +338,8 @@ function initThreejs(fovy, video, videoCanvas) {
 function createFaceGeometry(xzimgMagicFace) {
   // Create face mesh
   var faceGeometry = new THREE.BufferGeometry();
-  faceGeometry.setAttribute('position', new THREE.BufferAttribute(xzimgMagicFace.faceModelObj.vertices, 3));
-  faceGeometry.setAttribute('uv', new THREE.BufferAttribute(xzimgMagicFace.faceModelObj.uvs, 2));
+  faceGeometry.setAttribute("position", new THREE.BufferAttribute(xzimgMagicFace.faceModelObj.vertices, 3));
+  faceGeometry.setAttribute("uv", new THREE.BufferAttribute(xzimgMagicFace.faceModelObj.uvs, 2));
   faceGeometry.setIndex(new THREE.BufferAttribute(xzimgMagicFace.faceModelObj.faces, 1));
   faceGeometry.computeBoundingSphere();
   faceGeometry.computeBoundingBox();
@@ -407,15 +403,15 @@ function renderThreejs(xzimgMagicFace) {
         obj.rotation.setFromRotationMatrix(l_transfMatrix);
         obj.visible = true;
         /*
-        // -- pivot translation and rotation
-        obj.translateX(objects_pivot_poses[i][0]);
-        obj.translateY(objects_pivot_poses[i][1]);
-        obj.translateZ(objects_pivot_poses[i][2]);
-        obj.rotateX(THREE.Math.degToRad(objects_pivot_poses[i][3]));           
-        obj.rotateY(THREE.Math.degToRad(objects_pivot_poses[i][4]));           
-        obj.rotateZ(THREE.Math.degToRad(objects_pivot_poses[i][5]));   
-        */
-        // console.log(objects_pivot_poses[i][3]);        
+                // -- pivot translation and rotation
+                obj.translateX(objects_pivot_poses[i][0]);
+                obj.translateY(objects_pivot_poses[i][1]);
+                obj.translateZ(objects_pivot_poses[i][2]);
+                obj.rotateX(THREE.Math.degToRad(objects_pivot_poses[i][3]));           
+                obj.rotateY(THREE.Math.degToRad(objects_pivot_poses[i][4]));           
+                obj.rotateZ(THREE.Math.degToRad(objects_pivot_poses[i][5]));   
+                */
+        // console.log(objects_pivot_poses[i][3]);
         // console.log(i)
       }
     }); // -- Set the face mesh (uv textured face object)
