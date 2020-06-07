@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hat</title>
+    <style>
+      body {
+        text-align: center;
+      }
+        #ar-button {
+            z-index: 10;
+            position: absolute;
+            bottom: 0;
+            right: 0;
+            width: 20%;
+            height: 4%;
+            font-size: 2.5vmin;
+            border: none;
+            border-top-left-radius: 2vmin;
+            font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+            outline: none;
+            background: rgba(0, 0, 0, 0.65);
+            color: white;
+            pointer-events: auto;
+            user-select: none;
+        }
+   
+        model-viewer {
+            top: 0;
+            left: 0;
+            right: 0;
+            position: absolute;
+            margin: auto;
+            width: 100%;
+            height: 100%;
+            display: block;
+            pointer-events: auto;
+        }
+        #container {
+          position: relative;
+          margin: auto;
+          background: none;
+          width: 100vmin;
+          height: 75vmin;
+          pointer-events: none;
+        }
+        @keyframes fadeIn {
+        25% {
+          opacity: 0;
+        }
+        100% {
+          opacity: 1;
+        }
+      }
+      @keyframes fadeOut {
+        0% {
+          opacity: 1;
+        }
+        100% {
+          opacity: 0;
+        }
+      }
+      .fade-in {
+        animation: fadeIn 1s forwards;
+      }
+      .fade-out {
+        animation: fadeOut 1s forwards;
+      }
+      body {
+        text-align: center;
+        margin: 0;
+      }
+      #video-source {
+        display: none;
+      }
+
+      #xzimg-sdk-video {
+        position: absolute;
+        left: 0;
+        top: 0;
+        display: none;
+      }
+
+      #xzimg-sdk-canvas {
+        z-index: 0;
+        position: relative;
+        left: 0;
+        top: 0;
+        margin: auto;
+        opacity: 0;
+        width: 100% !important;
+        height: 100% !important;
+      }
+
+      #xzimg-sdk-logo {
+        position: absolute;
+        left: 0;
+        top: 0;
+      }
+
+      #progress-bar[value] {
+        width: 400px; 
+        height: 15px;
+        -webkit-appearance: none;
+        display: none;
+      }
+    </style>
+</head>
+<body>
+    
+    <script type="module" src="https://unpkg.com/@google/model-viewer/dist/model-viewer.js"></script>
+    <script nomodule src="https://unpkg.com/@google/model-viewer/dist/model-viewer-legacy.js"></script>
+    
+    <div id="container">
+        <button id="ar-button" style="z-index: 10;">Try on in AR </button>
+        <model-viewer
+            src="./models/Hat.glb"
+            alt="A 3D hat"
+            auto-rotate
+            camera-controls
+            skybox-image="./images/blurry_hdr.hdr">
+            
+        </model-viewer>    
+
+    
+        <select id="video-source">
+            <option value="">select your device ID</option>
+        </select>
+    
+        <div id="xzimg-sdk-wrapper" style="z-index: 0">
+            <video id="xzimg-sdk-video" playsinline autoplay></video>
+            <canvas id="xzimg-sdk-canvas" style="z-index: 0"></canvas>
+        </div>      
+        <progress id="progress-bar" max="100" value="0"></progress>
+    </div>
+      <script type="text/javascript" src="xzimg/xzimg.js"></script>
+      <script>
+          const sdkCanvas = document.getElementById("xzimg-sdk-canvas");
+
+          const btn = document.getElementById("ar-button");
+          btn.addEventListener("click", startAR);
+
+          function startAR() {
+            const script = document.createElement('script');
+              script.setAttribute('src', 'bundle.js');
+              document.head.appendChild(script);
+              btn.removeEventListener("click", startAR);
+              btn.addEventListener("click", hideAR);
+              btn.style.display = "none";
+              btn.innerHTML = "Back to 3D viewer";
+          }
+
+          function hideAR() {
+            btn.removeEventListener("click", hideAR);
+            btn.addEventListener("click", showAR);
+            sdkCanvas.classList.add("fade-out");
+            btn.style.display = "none";
+            setTimeout(() => {
+                sdkCanvas.style.opacity = 0;
+                sdkCanvas.classList.remove("fade-out");
+                btn.innerHTML = "Back to AR";
+                btn.style.display = "inline";
+            }, 500);
+          }
+          function showAR() {
+            btn.removeEventListener("click", showAR);
+            btn.addEventListener("click", hideAR);
+            sdkCanvas.classList.remove("fade-out");
+            sdkCanvas.classList.add("fade-in");
+            btn.style.display = "none";
+            setTimeout(() => {
+                sdkCanvas.style.opacity = 1;
+                sdkCanvas.classList.remove("fade-in");
+                btn.innerHTML = "Back to viewer";
+                btn.style.display = "inline";
+            }, 500);
+          }
+      </script>
+      <!-- <script type="text/javascript" src="bundle.js"></script>  -->
+</body>
+</html>
