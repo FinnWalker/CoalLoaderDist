@@ -58,11 +58,11 @@
         console.log(aspect_ratio);
 
         if (aspect_ratio > 1) {
-          videoCanvas.style.height = "100%";
-          videoCanvas.style.width = "auto";
+          videoCanvas.style.height = "100% !important";
+          videoCanvas.style.width = "auto !important";
         } else {
-          videoCanvas.style.height = "auto";
-          videoCanvas.style.width = "100%";
+          videoCanvas.style.height = "auto !important";
+          videoCanvas.style.width = "100% !important";
         }
       }
       function startAR() {
