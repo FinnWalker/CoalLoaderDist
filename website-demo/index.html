@@ -17,7 +17,7 @@
       src="https://unpkg.com/@google/model-viewer/dist/model-viewer-legacy.js"
     ></script>
 
-    <div id="container">
+    <div id="demo-container">
       <model-viewer
         src="./models/Hat.glb"
         alt="A 3D hat"
@@ -47,12 +47,26 @@
         style="display: none;"
       ></progress>
     </div>
+
     <script type="text/javascript" src="xzimg/xzimg.js"></script>
     <script>
+      const video = document.getElementById("xzimg-sdk-video");
+
+      let aspect_ratio = 1;
+      function resize() {
+        aspect_ratio = video.videoWidth / video.videoHeight;
+        console.log(aspect_ratio);
+
+        if (aspect_ratio > 1) {
+        }
+      }
       function startAR() {
         const script = document.createElement("script");
+
         script.setAttribute("src", "bundle.js");
         document.head.appendChild(script);
+
+        window.addEventListener("resize", resize);
       }
       startAR();
     </script>

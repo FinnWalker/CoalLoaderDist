@@ -19,8 +19,21 @@ body {
   width: 100vmin;
   height: 100vmin;
   border: 0.5vmin solid #aaa;
+  overflow: hidden;
+}
+#xzimg-sdk-canvas {
+  position: absolute;
+  display: block;
+  height: 100% !important;
+  width: auto !important;
+  pointer-events: none;
+  margin: auto;
+  left: 50%;
+  right: 50%;
+  transform: translateX(-50%);
 }
 model-viewer {
   width: 100%;
   height: 100%;
+  position: absolute;
 }
