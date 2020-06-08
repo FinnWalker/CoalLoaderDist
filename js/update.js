@@ -302,8 +302,13 @@ module.exports = {
             }
 
             content += "\n";
-
-            fs.writeFile("coal_loader_stats.csv", content, function (err) {
+            const directory = path.join(
+              __dirname,
+              "..",
+              "coal_loader_stats.csv"
+            );
+            console.log(directory);
+            fs.writeFile(directory, content, function (err) {
               if (err) throw err;
               const directory = path.join(
                 __dirname,
