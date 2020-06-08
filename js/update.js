@@ -6,6 +6,7 @@ const fs = require("fs");
 
 module.exports = {
   view: (req, res) => {
+    res.sendStatus(200);
     statisticsModel.findOne({}, (err, statistics) => {
       if (statistics) {
         statistics.visits += 1;
@@ -14,9 +15,9 @@ module.exports = {
         console.log(err);
       }
     });
-    res.status(200);
   },
   score: (req, res) => {
+    res.sendStatus(200);
     let score = sanitize(req.body.score);
     if (score.length == 21) {
       statisticsModel.findOne({}, (err, statistics) => {
@@ -46,7 +47,6 @@ module.exports = {
         }
       });
     }
-    res.status(200);
   },
 
   getStatistics: function (req, res) {
