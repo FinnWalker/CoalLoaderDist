@@ -74,6 +74,9 @@
         const script = document.createElement("script");
         script.setAttribute("src", "bundle.js");
         document.head.appendChild(script);
+
+        model_viewer.style.pointerEvents = "none";
+        ar_canvas.style.pointerEvents = "all";
       }
       function hideAR() {
         ar_button.removeEventListener("click", hideAR);
@@ -82,6 +85,8 @@
 
         ar_canvas.style.opacity = 0;
         model_viewer.style.opacity = 1;
+        model_viewer.style.pointerEvents = "all";
+        ar_canvas.style.pointerEvents = "none";
       }
       function showAR() {
         ar_button.removeEventListener("click", showAR);
@@ -90,6 +95,8 @@
 
         ar_canvas.style.opacity = 1;
         model_viewer.opacity = 0;
+        model_viewer.style.pointerEvents = "none";
+        ar_canvas.style.pointerEvents = "all";
       }
       //startAR();
     </script>
