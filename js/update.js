@@ -63,6 +63,8 @@ module.exports = {
 
             let correct = 0;
             let incorrect = 0;
+            console.log(statistics);
+            console.log(statistics.question_01);
             for (let i = 0; i < statistics.question_01.length; ++i) {
               if (statistics.question_01[i]) {
                 ++correct;
