@@ -54,11 +54,12 @@ module.exports = {
       "Visits,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21\n";
     const password = sanitize(req.body.password);
     if (password === "Loader11712") {
-      statisticsModel.find({}, function (err, statistics) {
+      statisticsModel.find({}, function (err, raw_statistics) {
         if (err) {
           console.log("There was an error finding users");
         } else {
-          if (statistics) {
+          if (raw_statistics) {
+            statistics = raw_statistics[0];
             let questions = [];
 
             let correct = 0;
