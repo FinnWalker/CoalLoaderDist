@@ -13,6 +13,9 @@ app.use("/test", express.static("website-demo"));
 
 app.post("/view", update.view);
 app.post("/score", update.score);
+app.get("/get_stats", (req, res) => {
+  res.sendFile(path.join(__dirname, "data.html"));
+});
 
 const port = 5445;
 app.listen(port, "0.0.0.0", () => {
