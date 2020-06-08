@@ -59,7 +59,6 @@ module.exports = {
           console.log("There was an error finding users");
         } else {
           if (statistics) {
-            let views = statistics.views;
             let questions = [];
 
             let correct = 0;
