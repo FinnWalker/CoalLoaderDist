@@ -21,27 +21,27 @@ module.exports = {
     if (score.length == 21) {
       statisticsModel.findOne({}, (err, statistics) => {
         if (statistics) {
-          statistics.question_01 = score[0];
-          statistics.question_02 = score[1];
-          statistics.question_03 = score[2];
-          statistics.question_04 = score[3];
-          statistics.question_05 = score[4];
-          statistics.question_06 = score[5];
-          statistics.question_07 = score[6];
-          statistics.question_08 = score[7];
-          statistics.question_09 = score[8];
-          statistics.question_10 = score[9];
-          statistics.question_11 = score[10];
-          statistics.question_12 = score[11];
-          statistics.question_13 = score[12];
-          statistics.question_14 = score[13];
-          statistics.question_15 = score[14];
-          statistics.question_16 = score[15];
-          statistics.question_17 = score[16];
-          statistics.question_18 = score[17];
-          statistics.question_19 = score[18];
-          statistics.question_20 = score[19];
-          statistics.question_21 = score[20];
+          statistics.question_01.push(score[0]);
+          statistics.question_02.push(score[1]);
+          statistics.question_03.push(score[2]);
+          statistics.question_04.push(score[3]);
+          statistics.question_05.push(score[4]);
+          statistics.question_06.push(score[5]);
+          statistics.question_07.push(score[6]);
+          statistics.question_08.push(score[7]);
+          statistics.question_09.push(score[8]);
+          statistics.question_10.push(score[9]);
+          statistics.question_11.push(score[10]);
+          statistics.question_12.push(score[11]);
+          statistics.question_13.push(score[12]);
+          statistics.question_14.push(score[13]);
+          statistics.question_15.push(score[14]);
+          statistics.question_16.push(score[15]);
+          statistics.question_17.push(score[16]);
+          statistics.question_18.push(score[17]);
+          statistics.question_19.push(score[18]);
+          statistics.question_20.push(score[19]);
+          statistics.question_21.push(score[20]);
           statistics.save();
         }
       });
@@ -298,7 +298,7 @@ module.exports = {
             content += statistics.visits;
 
             for (let i = 0; i < questions.length; ++i) {
-              content += "," + questions[i];
+              content += "," + questions[i] + "%";
             }
 
             content += "\n";
