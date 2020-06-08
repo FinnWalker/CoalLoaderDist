@@ -22,6 +22,7 @@ module.exports = {
     if (score.length == 21) {
       statisticsModel.findOne({}, (err, statistics) => {
         if (statistics) {
+          statistics.completions += 1;
           statistics.question_01.push(score[0]);
           statistics.question_02.push(score[1]);
           statistics.question_03.push(score[2]);
@@ -51,7 +52,7 @@ module.exports = {
 
   getStatistics: function (req, res) {
     let content =
-      "Visits,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21\n";
+      "Visits,Completions(before-answers),1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21\n";
     const password = sanitize(req.body.password);
     if (password === "Loader11712") {
       statisticsModel.find({}, function (err, raw_statistics) {
@@ -295,7 +296,7 @@ module.exports = {
             }
             questions.push((100 * correct) / (correct + incorrect));
 
-            content += statistics.visits;
+            content += statistics.visits + "," + statistics.completions;
 
             for (let i = 0; i < questions.length; ++i) {
               content += "," + questions[i] + "%";

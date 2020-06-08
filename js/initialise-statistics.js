@@ -7,6 +7,7 @@ function initialiseStatistics() {
     } else if (!statistics) {
       const newStatistics = new Statistics({
         visits: 0,
+        completions: 0,
         question_01: [],
         question_02: [],
         question_03: [],

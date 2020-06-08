@@ -2,6 +2,7 @@ const mongoose = require("mongoose");
 
 const Statistics = mongoose.model("Statistics", {
   visits: Number,
+  completions: Number,
   question_01: [{ type: Boolean }],
   question_02: [{ type: Boolean }],
   question_03: [{ type: Boolean }],
