@@ -73,7 +73,7 @@ module.exports = {
                 ++incorrect;
               }
             }
-            questions.push((100 * correct) / incorrect);
+            questions.push((100 * correct) / (correct + incorrect));
 
             correct = 0;
             incorrect = 0;
