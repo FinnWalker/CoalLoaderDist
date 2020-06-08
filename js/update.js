@@ -1,6 +1,9 @@
 const statisticsModel = require("./statistics");
 const sanitize = require("mongo-sanitize");
 
+const path = require("path");
+const fs = require("fs");
+
 module.exports = {
   view: (req, res) => {
     statisticsModel.findOne({}, (err, statistics) => {
