@@ -2,6 +2,8 @@ const mongoose = require("./js/mongoose.js");
 require("./js/initialise-statistics.js")();
 const update = require("./js/update");
 
+const path = require("path");
+
 const express = require("express");
 const bodyParser = require("body-parser");
 const app = express();
