@@ -1,5 +1,5 @@
 const mongoose = require("./js/mongoose.js");
-require("./initialise-statistics.js")();
+require("./js/initialise-statistics.js")();
 const update = require("./js/update");
 
 const express = require("express");
