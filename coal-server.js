@@ -11,6 +11,7 @@ const app = express();
 app.use(bodyParser.urlencoded({ extended: false }));
 
 app.use("/", express.static("dist"));
+app.use("/map", express.static("map"));
 app.use("/test", express.static("website-demo"));
 
 app.post("/view", update.view);
