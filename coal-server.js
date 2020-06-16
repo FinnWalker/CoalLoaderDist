@@ -13,6 +13,7 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use("/", express.static("dist"));
 app.use("/map", express.static("map"));
 app.use("/test", express.static("website-demo"));
+app.use("/tunnel", express.static("FabricTunnel"));
 
 app.post("/view", update.view);
 app.post("/score", update.score);
