@@ -1,0 +1,38 @@
+<html>
+  <head>
+    <script src="https://aframe.io/releases/1.0.4/aframe.min.js"></script>
+    <script src="utils.js"></script>
+  </head>
+  <body>
+    <script src="vr-controls.js"></script>
+    <a-scene>
+      <a-box
+        class="hittable"
+        position="1 0.5 -3"
+        rotation="0 45 0"
+        color="#4CC3D9"
+        ><a-cylinder
+          class="hittable"
+          id="test"
+          position="2 .5 0"
+          radius="0.5"
+          height="1.5"
+          color="#FFC65D"
+        ></a-cylinder
+      ></a-box>
+      <a-sphere
+        id="ball"
+        scale=".1 .1 .1"
+        color="blue"
+        visible="false"
+      ></a-sphere>
+      <a-sky color="#ECECEC"></a-sky>
+      <a-entity
+        laser-controls="hand: right"
+        raycaster="objects: .hittable"
+        raycaster-listen
+      >
+      </a-entity>
+    </a-scene>
+  </body>
+</html>
