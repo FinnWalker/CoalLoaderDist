@@ -3,10 +3,12 @@ require("./js/initialise-statistics.js")();
 const update = require("./js/update");
 
 const path = require("path");
+const cors = require("cors");
 
 const express = require("express");
 const bodyParser = require("body-parser");
 const app = express();
+app.use(cors());
 
 app.use(bodyParser.urlencoded({ extended: false }));
 
