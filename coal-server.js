@@ -15,6 +15,7 @@ app.use("/map", express.static("map"));
 app.use("/test", express.static("website-demo"));
 app.use("/tunnel", express.static("FabricTunnel"));
 app.use("/aframe", express.static("aframe"));
+app.use("/helios", express.static("helios_viewer"));
 
 app.post("/view", update.view);
 app.post("/score", update.score);
