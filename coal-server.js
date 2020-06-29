@@ -9,7 +9,7 @@ const express = require("express");
 const bodyParser = require("body-parser");
 const app = express();
 app.use(cors());
-
+app.options('*', cors());
 app.use(bodyParser.urlencoded({ extended: false }));
 
 app.use("/", express.static("dist"));
