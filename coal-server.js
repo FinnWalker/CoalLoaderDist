@@ -9,7 +9,7 @@ const express = require("express");
 const bodyParser = require("body-parser");
 const app = express();
 app.use(cors());
-app.options('*', cors());
+app.options("*", cors());
 app.use(bodyParser.urlencoded({ extended: false }));
 
 app.use("/", express.static("dist"));
@@ -18,6 +18,7 @@ app.use("/test", express.static("website-demo"));
 app.use("/tunnel", express.static("FabricTunnel"));
 app.use("/aframe", express.static("aframe"));
 app.use("/helios", express.static("helios_viewer"));
+app.use("/helios_documentation", express.static("documentation"));
 
 app.post("/view", update.view);
 app.post("/score", update.score);
