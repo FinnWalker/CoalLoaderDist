@@ -19,6 +19,7 @@ app.use("/tunnel", express.static("FabricTunnel"));
 app.use("/aframe", express.static("aframe"));
 app.use("/helios", express.static("helios_viewer"));
 app.use("/helios_documentation", express.static("documentation"));
+app.use("/hina", express.static("test"));
 
 app.post("/view", update.view);
 app.post("/score", update.score);
